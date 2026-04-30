@@ -3,100 +3,214 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Portofolio Retno Jumilah</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Tia Izzati Widyana</title>
     <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #4f46e5;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --accent: #e0e7ff;
+        }
+
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #f4f6f9;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
         }
 
+        /* Header */
         header {
-            background: linear-gradient(135deg, #4facfe, #6a11cb);
+            background: linear-gradient(135deg, #1e293b 0%, #4338ca 100%);
             color: white;
-            padding: 40px;
+            padding: 80px 20px;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
         }
 
-        .header-container {
-            display: flex;
-            align-items: center;
-            max-width: 1000px;
-            margin: auto;
-            gap: 30px;
-        }
-
-        .header-container img {
-            width: 140px;
-            height: 140px;
+        .header-content img {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            border: 4px solid white;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
         }
 
         section {
-            max-width: 1000px;
-            margin: auto;
-            padding: 30px;
+            max-width: 1100px;
+            margin: -50px auto 50px;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
         }
 
         h2 {
-            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            margin-top: 40px;
+            color: var(--dark);
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: var(--accent);
         }
 
         .card {
             background: white;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             opacity: 0;
-            transform: translateY(30px);
-            transition: 0.3s;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+            padding: 0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Foto Pengalaman Diperbesar Sedikit */
+        .exp-img {
+            max-width: 300px;
+            /* Lebar maksimal sertifikat */
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image-frame {
+            width: 100%;
+            height: auto;
+            background: #f1f5f9;
+            display: block;
+        }
+
+        .project-image-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            margin-top: 0;
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+
+        .skill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .skill {
-            display: inline-block;
-            background: #e3f2fd;
-            padding: 6px 12px;
-            margin: 5px;
-            border-radius: 20px;
+            background: var(--accent);
+            color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin: 10px 10px 0 0;
-            padding: 10px 15px;
-            background: #4facfe;
+            padding: 12px 24px;
+            background: var(--primary);
             color: white;
-            border-radius: 6px;
+            border-radius: 10px;
             text-decoration: none;
+            font-weight: 500;
             transition: 0.3s;
         }
 
-        .btn:hover {
-            background: #6a11cb;
+        .btn-figma {
+            background: #F24E1E !important;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            margin-top: 10px;
         }
 
         .icon {
-            width: 18px;
+            width: 20px;
+            filter: brightness(0) invert(1);
         }
 
         footer {
             text-align: center;
-            padding: 15px;
-            background: #ddd;
+            padding: 40px 20px;
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 50px 20px;
+            }
+
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .exp-img {
+                max-width: 100%;
+            }
+
+            /* Full width di mobile */
         }
     </style>
 </head>
@@ -104,185 +218,169 @@
 <body>
 
     <header>
-        <div class="header-container">
-            <img src="foto-saya.jpg" alt="Foto Retno">
-            <div>
-                <h1>Retno Jumilah</h1>
-                <p>Mahasiswa Teknik Informatika</p>
-                <p>Fokus: Sistem Informasi & Teknologi Digital</p>
-            </div>
+        <div class="header-content">
+            <img src="1000001726.jpg.jpeg" alt="Tia Izzati Widyana">
+            <h1>Tia Izzati Widyana</h1>
+            <p>Informatics Engineering Student | System Information & Digital Technology</p>
         </div>
     </header>
 
     <section>
-        <h2>Profil</h2>
         <div class="card">
-            <p>
-                Mahasiswa Teknik Informatika UIN Maulana Malik Ibrahim Malang yang memiliki ketertarikan dalam
-                pengembangan sistem informasi dan teknologi digital.
-                Memiliki kemampuan analisis dan problem solving pada software dan hardware serta pengalaman dalam
-                pengembangan sistem berbasis web, mobile, dan jaringan.
-            </p>
+            <h2>Tentang Saya</h2>
+            <p>Mahasiswa Teknik Informatika <strong>UIN Maulana Malik Ibrahim Malang</strong>. Saya tertarik dalam
+                pengembangan sistem informasi, teknologi digital dan desain yang berhubungan dengan teknologi.
+                Memiliki kemampuan dalam berbagai macam tools perangkat lunak. </p>
         </div>
-    </section>
 
-    <section>
-        <h2>Keahlian</h2>
-        <div class="card">
-            <span class="skill">HTML</span>
-            <span class="skill">PHP</span>
-            <span class="skill">JavaScript</span>
-            <span class="skill">Python</span>
-            <span class="skill">Flutter</span>
-            <span class="skill">MySQL</span>
-            <span class="skill">UI/UX</span>
-            <span class="skill">Hardware</span>
-        </div>
-    </section>
-
-    <section>
-        <h2>Tools & Teknologi</h2>
-        <div class="card">
-            <p>VS Code, Android Studio, Figma, Laragon, MySQL, Arduino, VirtualBox, Cisco Packet Tracer, GNS3, Winbox
-            </p>
-        </div>
-    </section>
-
-    <section>
         <h2>Pendidikan</h2>
         <div class="card">
-            <p><strong>S1 Teknik Informatika</strong><br>
-                UIN Maulana Malik Ibrahim Malang (Semester 4)</p>
-            <p><strong>SMA Negeri 1 Dompu</strong></p>
-        </div>
-    </section>
-
-    <section>
-        <h2>Project</h2>
-        <div class="grid">
-
-            <div class="card">
-                <h3>Aplikasi Pesantren</h3>
-                <p>
-                    Mengembangkan aplikasi berbasis mobile menggunakan <strong>Flutter</strong> dengan integrasi
-                    database berbasis <strong>Python</strong>.
-                    Berperan sebagai developer dalam merancang sistem pengelolaan data santri untuk meningkatkan
-                    efisiensi administrasi pesantren.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Sistem Laundry (OOP)</h3>
-                <p>
-                    Membangun sistem laundry berbasis <strong>JavaScript</strong> dengan konsep <strong>Object-Oriented
-                        Programming</strong>
-                    untuk mengelola transaksi dan data pelanggan secara terstruktur.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Desain UI Aplikasi</h3>
-                <p>
-                    Merancang wireframe dan mockup menggunakan <strong>Figma</strong> dengan fokus pada usability dan
-                    pengalaman pengguna.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Aplikasi Jadwal Kuliah</h3>
-                <p>
-                    Mengembangkan aplikasi berbasis web menggunakan <strong>PHP dan HTML</strong> untuk membantu
-                    pengelolaan jadwal kuliah secara sistematis.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Sistem Parkir Otomatis</h3>
-                <p>
-                    Mengembangkan sistem keamanan rumah berbasis <strong>hardware</strong> menggunakan sensor dan
-                    mikrokontroler yang dibuat dalam bentuk prototype fisik (visual).
-                    Sistem ini mampu mendeteksi aktivitas mencurigakan dan memberikan respons otomatis sebagai upaya
-                    peningkatan keamanan.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Sistem Keamanan Rumah</h3>
-                <p>
-                    Mengembangkan sistem keamanan rumah berbasis <strong>hardware</strong> menggunakan sensor dan
-                    mikrokontroler yang dibuat dalam bentuk prototype fisik (visual).
-                    Sistem ini mampu mendeteksi aktivitas mencurigakan dan memberikan respons otomatis sebagai upaya
-                    peningkatan keamanan.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <section>
-        <h2>Pengalaman & Kompetisi</h2>
-        <div class="card">
-            <p>
-                Mengikuti kompetisi cloud computing menggunakan VirtualBox serta melakukan simulasi jaringan menggunakan
-                Cisco Packet Tracer, GNS3, dan Winbox (MikroTik).
+            <p><strong>S1 Teknik Informatika</strong> | UIN Maulana Malik Ibrahim Malang <br>
+                <small>2024 - Sekarang (Semester 4)</small>
+            </p>
+            <p><strong>Pendidikan Menengah Atas</strong> | MAS Ibnu Ali & Pondok Pesantren Qur'an MAFAZA <br>
+                <small>2020 - 2023</small>
+            </p>
+            <p><strong>Pendidikan Menengah Pertama</strong> | SMPN 243 Jakarta <br>
+                <small>2017 - 2020</small>
             </p>
         </div>
-    </section>
 
-    <section>
-        <h2>Keunggulan</h2>
-        <div class="card">
-            <ul>
-                <li>Mampu problem solving pada software dan hardware</li>
-                <li>Berpengalaman dalam pengembangan web, mobile, dan jaringan</li>
-                <li>Mampu bekerja dalam tim maupun individu</li>
-                <li>Cepat beradaptasi dengan teknologi baru</li>
-            </ul>
+        <h2>Pengalaman</h2>
+        <div class="card" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <img src="17.png" class="exp-img" alt="Saintek Event 2025">
+            <p>Menjadi anggota kesekretariatan dan humas dalam acara Saintek Event<br>
+                <small>2025</small>
+            </p>
         </div>
-    </section>
 
-    <section>
-        <h2>Kontak</h2>
+        <h2>Keahlian & Teknologi</h2>
         <div class="card">
+            <div class="skill-container">
+                <span class="skill">HTML/CSS</span><span class="skill">PHP</span><span class="skill">JavaScript</span>
+                <span class="skill">Python</span><span class="skill">Flutter</span><span class="skill">MySQL</span>
+                <span class="skill">UI/UX (Figma)</span><span class="skill">Networking (Cisco/MikroTik)</span>
+            </div>
+            <p style="margin-top:20px; color: #64748b; font-size: 0.9rem;">
+                <strong>Tools:</strong> VS Code, Android Studio, Laragon, Arduino,
+                VirtualBox, GNS3, Winbox, Canva.
+            </p>
+        </div>
 
-            <p>Email: emailkamu@gmail.com</p>
+        <h2>Proyek</h2>
+        <div class="grid">
+            <div class="project-card card">
+                <div class="project-image-frame">
+                    <img src="WhatsApp Image 2026-04-30 at 13.52.04.jpeg" alt="Aplikasi Pesantren">
+                </div>
+                <div class="project-info">
+                    <h3>Aplikasi Pesantren</h3>
+                    <p>Manajemen data santri berbasis <strong>Flutter</strong> dan <strong>Python</strong> untuk
+                        digitalisasi administrasi pesantren.</p>
+                </div>
+            </div>
 
-            <a href="mailto:emailkamu@gmail.com" class="btn" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="icon"> Email
-            </a>
+            <div class="project-card card">
+                <div class="project-image-frame">
+                    <img src="WhatsApp Image 2026-04-30 at 15.31.43.jpeg" alt="Desain UI/UX Toko">
+                </div>
+                <div class="project-info">
+                    <h3>Desain Web Toko (Runner Up)</h3>
+                    <p>Web toko pengerajin lokal untuk melestarikan kearifan lokal Indonesia (Runner Up Best Project).
+                    </p>
+                    <a href="https://www.figma.com/proto/Ka7Rqx0uemI4trFh9cD7Cu/Project-UINUX?page-id=0%3A1&node-id=112-72&p=f&viewport=413%2C368%2C0.03&t=lozwJvFpi66bQckX-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=112%3A100"
+                        target="_blank" class="btn btn-figma">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" class="icon"
+                            style="width: 16px;"> Lihat di Figma
+                    </a>
+                </div>
+            </div>
 
-            <a href="https://wa.me/6281234567890" class="btn" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="icon"> WhatsApp
-            </a>
+            <div class="project-card card">
+                <div class="project-image-frame">
+                    <img src="IMG-20251211-WA0068.jpg" alt="Pendeteksi Gizi Makanan">
+                </div>
+                <div class="project-info">
+                    <h3>Pendeteksi Gizi Makanan</h3>
+                    <p>Membuat alat pendeteksi makanan menggunakan sensor hardware untuk mengukur kadar air dan asam.
+                    </p>
+                </div>
+            </div>
 
-            <a href="https://github.com/usernamekamu" class="btn" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" class="icon"> GitHub
-            </a>
+            <div class="project-card card">
+                <div class="project-image-frame">
+                    <img src="Picture1.jpg" alt="Membuat home page web program sederhana">
+                </div>
+                <div class="project-info">
+                    <h3>Membuat home page web dengan program sederhana</h3>
+                    <p>Membuat home page dari seatu web untuk bermain game.
+                    </p>
+                </div>
+            </div>
 
+            <div class="project-card card">
+                <div class="project-image-frame">
+                    <img src="IMG-20251211-WA0137.jpg" alt="Sistem Keamanan IoT">
+                </div>
+                <div class="project-info">
+                    <h3>Keamanan Rumah IoT</h3>
+                    <p>Prototype sistem keamanan menggunakan sensor hardware untuk deteksi aktivitas mencurigakan.</p>
+                </div>
+            </div>
+            <div class="project-card card">
+                <div class="project-image-frame">
+                    <img src="Screenshot 2026-04-26 215522.png" alt="Desain UI/UX ">
+                </div>
+                <div class="project-info">
+                    <h3>Desain Aplikasi My Journal</h3>
+                    <p>Aplikasi Membuat jurnal pribadi kita sendiri</p>
+
+                </div>
+            </div>
+        </div>
+
+        <h2>Hubungi Saya</h2>
+        <div class="card" style="text-align: center;">
+            <div class="btn-group" style="justify-content: center;">
+                <a href="https://www.linkedin.com/in/tia-izzati-widyana-727b84325" class="btn" target="_blank"
+                    style="background: #0077b5;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="icon"> LinkedIn
+                </a>
+
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tiaizzatiwidyana@gmail.com" class="btn"
+                    target="_blank" style="background: #ea4335;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="icon"> Email
+                </a>
+
+                <a href="https://wa.me/6289638077791" class="btn" target="_blank" style="background: #25d366;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="icon"> WhatsApp
+                </a>
+
+                <a href="https://github.com/tiaizzatiwidyana" class="btn" target="_blank" style="background: #333;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" class="icon"> GitHub
+                </a>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 Retno Jumilah</p>
+        <p>&copy; 2026 Tia Izzati Widyana. All Rights Reserved.</p>
     </footer>
 
     <script>
-        const cards = document.querySelectorAll('.card');
-
-        window.addEventListener('scroll', () => {
-            const trigger = window.innerHeight * 0.85;
-
-            cards.forEach(card => {
-                const top = card.getBoundingClientRect().top;
-
-                if (top < trigger) {
-                    card.style.opacity = 1;
-                    card.style.transform = "translateY(0)";
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
         });
     </script>
-
 </body>
 
 </html>
